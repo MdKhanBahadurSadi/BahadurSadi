@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Khan Bahadur Sadi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+            scroll-behavior: lazy;
+        }
+        .cv-container {
+            width: 800px;
+            background: #fff;
+            padding: 30px 40px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: background 0.3s, color 0.3s;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+        .dark-mode .cv-container {
+            background: #444;
+            color: #fff;
+        }
+        .firework {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-color: #87ceeb;
+            transition: background-color 0.3s;
+        }
+        .dark-mode .firework {
+            background-color: #222;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #3498db;
+        }
+        .dark-mode .profile-pic {
+            border: 5px solid #fff;
+        }
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .dark-mode h2 {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .dark-mode th {
+            background-color: #555;
+        }
+        .skill-container {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .skill-name {
+            font-weight: bold;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dark-mode .progress-bar {
+            background-color: #555;
+        }
+        .progress {
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            z-index: 2;
+        }
+        .top-right {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .dark-mode .social-icons a {
+            color: #fff;
+        }
+        .custom-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .custom-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+        .custom-button:active {
+            transform: scale(0.9);
+        }
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .dark-mode .card {
+            background: #555;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card ul li {
+            padding: 5px 0;
+        }
+        .card ul li strong {
+            color: #3498db;
+        }
+        .dark-mode .card ul li strong {
+            color: #fff;
+        }
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            animation: fadeOut 1s ease-out forwards 3s;
+        }
+
+        .splash-logo {
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .splash-logo h1 {
+            font-size: 4em;
+            margin: 0;
+            animation: slideInFromLeft 1s ease-out;
+        }
+        .splash-logo p {
+            font-size: 2em; 
+            margin: 0;
+            animation: slideInFromRight 1s ease-out;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-screen">
+        <div class="splash-logo">
+<p>لسَّلامُ عَلَيْكُم ورَحْمَةُ اللهِ وَبَرَكاتُهُ</p>
+            <h1>Welcome</h1>
+            <p>To Md Khan Bahadur Sadi's Bio-data</p>
+        </div>
+    </div>
+    <div class="firework"></div>
+    <div class="cv-container">
+        <button id="dark-mode" class="custom-button top-left">Dark Mode</button>
+        <button id="download-cv" class="custom-button top-right">Download CV</button>
+        
+        <div class="header">
+            <img src="https://scontent.fjsr6-1.fna.fbcdn.net/v/t39.30808-6/472004557_958020379582441_8585343648080228898_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeExCYwov1Uc_TA_qSEAOSY--jxJw9qyy-j6PEnD2rLL6MR2mX8n9x0-obAYCL_Nqkgck0N2-ZXW1F4z6RFanqEm&_nc_ohc=eaDyfQsgHpAQ7kNvgGuzors&_nc_oc=AdhHpMVWCd2Q8tODnrKnV_az1hFF8CUpWo7Cd5RTp53T5EnPmukm2el-NTKzYqPvJ6g&_nc_zt=23&_nc_ht=scontent.fjsr6-1.fna&_nc_gid=Acs1KPgnl3k5-hSI5OYXUVl&oh=00_AYE_aD4-uEYPa3sAwjioK_ppQnwo-jLKdwLHQZaNUJZEwg&oe=67D76CF8" class="profile-pic">
+            <h1>Md Khan Bahadur Sadi</h1>
+            <p>Phone: +8801320634246 | Email: khanbahadursadi@gmail.com</p>
+            <p>
+                <a href="https://www.linkedin.com/in/khanbahadursadi/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+                <a href="https://github.com/MdKhanBahadurSadi"><i class="fas fa-globe"></i> Portfolio</a>
+            </p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/khanbahadursadi/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        
+        <h2>Personal Information</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Full Name:</strong> Md Khan Bahadur Sadi</li>
+                <li><strong>Father's Name:</strong> Md Rafiqul Alam Khan</li>
+                <li><strong>Mother's Name:</strong> Mst Kazal Rakha</li>
+                <li><strong>Date of Birth:</strong> 15/6/2005</li>
+                <li><strong>Gender:</strong> Male</li>
+                <li><strong>Nationality:</strong> Bangladeshi</li>
+                <li><strong>Religion:</strong> Islam</li>
+                <li><strong>Blood Group:</strong> B+</li>
+                <li><strong>Current Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
+                <li><strong>Permanent Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
+            </ul>
+        </div>
+        
+        <h2>Resume Summary</h2>
+        <div class="card">
+            <p>Software Developer with basics foundation in Computer Science and expertise in Java, C, Flutter and SQL. Passionate about building efficient, scalable applications and continuously learning new technologies to enhance development processes.</p>
+        </div>
+        
+        <h2>Education</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BSc in CSE</td>
+                    <td>North Western University, Khulna</td>
+                    <td>Running</td>
+                </tr>
+                <tr>
+                    <td>HSC in Science</td>
+                    <td>Jessore Board</td>
+                    <td>2022</td>
+                </tr>
+                <tr>
+                    <td>SSC in Science</td>
+                    <td>Jessore Board</td>
+                    <td>2020</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Skills</h2>
+        <div class="card">
+            <div class="skill-container">
+                <div class="skill-name">Java</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #3498db;" data-percentage="52"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">Kotlin</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #8e44ad;" data-percentage="18"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">Flutter</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #e67e22;" data-percentage="45"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">Python</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #27ae60;" data-percentage="12"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">C</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #2ecc71;" data-percentage="82"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">SQL</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #9b59b6;" data-percentage="78"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">HTML</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #f39c12;" data-percentage="55"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">CSS</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #2980b9;" data-percentage="43"></div></div>
+            </div>
+            <div class="skill-container">
+                <div class="skill-name">JavaScript</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #c0392b;" data-percentage="33"></div></div>
+            </div>
+        </div>
+
+        <h2>Certifications & Training</h2>
+        <div class="card">
+            <ul>
+                <li>Nai</li>
+            </ul>
+        </div>
+        
+        <h2>Projects</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Project Name:</strong> NWU My Class</li>
+                <li><strong>Project Idea:</strong> Md Mahmudul Haque</li>
+                <li><strong>Technology Used:</strong> Java</li>
+            </ul>
+            <div class="skill-container">
+                <div class="skill-name">Result and Impact</div>
+                <div class="progress-bar"><div class="progress" style="background-color: #e74c3c;" data-percentage="2"></div></div>
+                <ul>
+                    <li><strong>Limitations:</strong> Database Nai</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Additional Sections</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Awards & Achievements:</strong> Nai</li>
+                <li><strong>Volunteer Experience:</strong> Nai</li>
+                <li><strong>Languages Spoken:</strong> Bangla, English, Arabic</li>
+            </ul>
+        </div>
+    </div>
+
+    <button id="back-to-top">Back to Top</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const progressBars = document.querySelectorAll(".progress");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const percentage = bar.getAttribute("data-percentage");
+                        bar.style.width = percentage + "%";
+                    } else {
+                        const bar = entry.target;
+                        bar.style.width = "0";
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            progressBars.forEach(bar => observer.observe(bar));
+
+            const darkModeBtn = document.getElementById("dark-mode");
+            darkModeBtn.addEventListener("click", () => {
+                document.body.classList.toggle("dark-mode");
+                document.querySelector('.firework').classList.toggle("dark-mode");
+            });
+
+            const downloadCvBtn = document.getElementById("download-cv");
+            downloadCvBtn.addEventListener("click", () => {
+                const element = document.createElement("a");
+                const file = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+                element.href = URL.createObjectURL(file);
+                element.download = "MdKhanBahadurSadi_CV.html";
+                document.body.appendChild(element);
+                element.click();
+            });
+
+            const backToTopBtn = document.getElementById("back-to-top");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            });
+
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            const colors = ['#ff0000', '#ff00ff', '#0000ff', '#00ffff', '#00ff00', '#ffff00', '#ff8000', '#800080', '#00ff80', '#ff0080', '#ff8080', '#80ff80'];
+            const fireworkContainer = document.querySelector('.firework');
+
+            function createFirework() {
+                const firework = document.createElement('div');
+                firework.classList.add('firework-effect');
+                firework.style.left = Math.random() * 100 + 'vw';
+                firework.style.top = Math.random() * 100 + 'vh';
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                fireworkContainer.appendChild(firework);
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 1500);
+            }
+
+            setInterval(createFirework, 10);
+
+            setTimeout(() => {
+                document.querySelector('.splash-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.splash-screen').style.display = 'none';
+                    document.querySelector('.cv-container').style.display = 'block';
+                }, 500);
+            }, 3000);
+        });
+    </script>
+    <style>
+        .firework-effect {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(4);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com
