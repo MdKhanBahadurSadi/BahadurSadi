@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,63 +204,7 @@
         .dark-mode .card ul li strong {
             color: #fff;
         }
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #3498db;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3;
-            animation: fadeOut 1s ease-out forwards 3s;
-        }
-        .splash-logo {
-            text-align: center;
-            animation: fadeIn 1.5s ease-out;
-        }
-        .splash-logo h1 {
-            font-size: 4em;
-            margin: 0;
-            animation: slideInFromLeft 1s ease-out;
-        }
-        .splash-logo p {
-            font-size: 2em; 
-            margin: 0;
-            animation: slideInFromRight 1s ease-out;
-        }
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        @keyframes slideInFromRight {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .verification-container {
+            .verification-container {
             width: 90%;
             max-width: 500px;
             background: #fff;
@@ -280,7 +225,155 @@
             background: #333;
             color: #fff;
         }
-        .verification-container h2 {
+        .splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #00008B, #87CEEB, #0000FF); 
+    background-size: 400% 400%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    animation: backgroundAnimation 30s infinite, fadeOut 2s ease-out forwards 12s;
+}
+
+.splash-logo {
+    text-align: center;
+    animation: fadeIn 2.5s ease-out, flipIn3D 1.2s ease-out, pulseGlow 2s infinite alternate;
+}
+
+.splash-logo h1 {
+    font-size: 4em;
+    margin: 0;
+    animation: slideInFromLeft 2s ease-out, rotateLogo 5s infinite linear, toStraightLine 8s ease-out forwards 5s;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00008B, 0 0 40px #00008B, 0 0 50px #00008B, 0 0 60px #00008B, 0 0 70px #00008B;
+}
+
+.splash-logo p {
+    font-size: 2em;
+    margin: 0;
+    animation: slideInFromRight 2s ease-out, glowText 2s infinite alternate, toStraightLine 8s ease-out forwards 5s;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #87CEEB, 0 0 40px #87CEEB, 0 0 50px #87CEEB, 0 0 60px #87CEEB, 0 0 70px #87CEEB;
+}
+
+.cool-card {
+    animation: flipIn3D 1.2s ease-out, pulseGlow 2s infinite alternate;
+    transform-style: preserve-3d;
+    transform-origin: left;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glowText {
+    0% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00008B, 0 0 40px #00008B, 0 0 50px #00008B, 0 0 60px #00008B, 0 0 70px #00008B;
+    }
+    100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #87CEEB, 0 0 40px #87CEEB, 0 0 50px #87CEEB, 0 0 60px #87CEEB, 0 0 70px #87CEEB;
+    }
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes toStraightLine {
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1, 0.1);
+    }
+}
+
+@keyframes flipIn3D {
+    0% {
+        transform: perspective(800px) rotateY(-90deg);
+        opacity: 0;
+    }
+    60% {
+        transform: perspective(800px) rotateY(20deg);
+        opacity: 1;
+    }
+    100% {
+        transform: perspective(800px) rotateY(0deg);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 0px rgba(0, 255, 200, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.9);
+    }
+}
+
+@keyframes finalAnimation {
+    0% {
+        transform: scale(1, 0.1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5, 1.5) rotate(180deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}.verification-container h2 {
             color: #3498db;
             margin-bottom: 20px;
         }
@@ -385,8 +478,7 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
             z-index: 3;
             transition: 0.3s;
-            padding-top: 60px; /* Adjusted padding for navbar */
-        }
+            padding-top: 60px;         }
         .menu-content a {
             padding: 10px 15px;
             text-decoration: none;
@@ -420,9 +512,9 @@
 <body>
     <div class="splash-screen">
         <div class="splash-logo">
-            <p>لسَّلامُ عَلَيْكُم ورَحْمَةُ اللهِ وَبَرَكاتُهُ</p>
+            <p>ٱلسَّلَـٰمُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّهِ وَبَرَكَاتُهُ</p>
             <h1>Welcome</h1>
-            <p>To Md Khan Bahadur Sadi's Bio-data</p>
+            <p>Exploring skills, stories, and milestones that shaped who I am.</p>
         </div>
     </div>
     <div class="firework"></div>
@@ -433,11 +525,11 @@
     </div>
     <div class="menu-content" id="menuContent">
         <span class="close-menu" onclick="toggleMenu()">×</span>
-        <a href="#" onclick="toggleDarkMode()">Toggle Dark Mode</a>
+        <a href="#" onclick="toggleDarkMode()">Dark Mode</a>
         <a href="#" onclick="downloadCV()">Download CV</a>
         <a href="#" onclick="showComingSoon()">Search</a>
-        <a href="#" onclick="showComingSoon()">New Feature 1</a>
-        <a href="#" onclick="showComingSoon()">New Feature 2</a>
+        <a href="#" onclick="showComingSoon()">New Feature 1(Coming Soon)</a>
+        <a href="#" onclick="showComingSoon()">New Feature 2(Coming Soon)</a>
     </div>
     <div class="verification-container">
         <h2>Verify You are a Human</h2>
@@ -467,79 +559,28 @@
             </div>
         </div>
         
-        <h2>Personal Information</h2>
-        <div class="card">
-            <ul>
-                <li><strong>Full Name:</strong> Md Khan Bahadur Sadi</li>
-                <li><strong>Father's Name:</strong> Md Rafiqul Alam Khan</li>
-                <li><strong>Mother's Name:</strong> Mst Kazal Rakha</li>
-                <li><strong>Date of Birth:</strong> 15/6/2005</li>
-                <li><strong>Gender:</strong> Male</li>
-                <li><strong>Nationality:</strong> Bangladeshi</li>
-                <li><strong>Religion:</strong> Islam</li>
-                <li><strong>Blood Group:</strong> B+</li>
-                <li><strong>Current Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
-                <li><strong>Permanent Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
-            </ul>
-        </div>
-<h2>Personal Preference</h2>
-                    <h3>Philosophy & Beliefs</h2>
-<div class="card">
-            <ul>
+        <h2 onclick="toggleSection(this)">Personal Information</h2>
+  <div class="toggle-content">
+    <div class="card">
+      <ul>
+        <li><strong>Full Name:</strong> Md Khan Bahadur Sadi</li>
+        <li><strong>Father's Name:</strong> Md Rafiqul Alam Khan</li>
+        <li><strong>Mother's Name:</strong> Mst Kazal Rakha</li>
+        <li><strong>Date of Birth:</strong> 15/6/2005</li>
+        <li><strong>Gender:</strong> Male</li>
+        <li><strong>Nationality:</strong> Bangladeshi</li>
+        <li><strong>Religion:</strong> Islam</li>
+        <li><strong>Blood Group:</strong> B+</li>
+        <li><strong>Current Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
+        <li><strong>Permanent Address:</strong> 28, Motiakhali Main Road Shipyard, Khulna</li>
+      </ul>
+    </div>
+  </div>
 
-                <li><strong>Life Motto:</strong>Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds.” (Surah Al-An'am 6:162)</li>
-                <li><strong>Personal Philosophy:</strong>Follow the Qur’an and Sunnah in every aspect of life</li>
-                <li><strong>Political Thinking:</strong>Justice, honesty, and governance based on Islamic principles</li>
-                <li><strong>Religious Beliefs:</strong>Follows the core teachings of Islam, believes in the oneness of Allah, the prophethood of Muhammad (صلى الله عليه وسلم), the Quran, angels, divine books, the Day of Judgment, predestination (Qadr), and life after death. Observes the Five Pillars of Islam and leads a moral, righteous life.</li>
-                <li><strong>Favorite Person:</strong> Prophet Muhammad (ﷺ)</li>
-                <li><strong>Role Model:</strong>Prophet Muhammad (ﷺ)</li>
-                <li><strong>Person I Dislike:</strong>Namrud,Amr ibn Hisham,Ramesses II,Sheikh Hasina </li>
-                <li><strong>Greatest Enemy:</strong> Nafs (self-desires) and Shaytan (Satan), who misguide us from the right path</li>
-                <li><strong>Biggest Fear:</strong>Displeasing Allah and failing in the Hereafter</li>
-                <li><strong>Purpose of Life:</strong>To worship Allah (SWT) and strive for Jannah by following Islam in every aspect of life.</li>
-            </ul>
-        </div>
-
-        
-            <h3>Food and Drink</h2>
-<div class="card">
-            <ul>
-
-                <li><strong>Favorite Food:</strong>Every halal food without Mula</li>
-                <li><strong>Favorite Fruit:</strong>Every halal fruit</li>
-                <li><strong>Favorite Fish:</strong>Every halal fish</li>
-                <li><strong>Disliked Food:</strong>Nai</li>
-                <li><strong>Favorite Beverage::</strong>Nabeez</li>
-                
-            </ul>
-        </div>
-            
-<h3>Lifestyle and Preferences</h2>
-<div class="card">
-            <ul>
-
-                <li><strong>Favorite Color:</strong>Green,White</li>
-                <li><strong>Favorite Place:</strong>Rupsha River</li>
-                <li><strong>Favorite Season:</strong>Rainy Season</li>
-                <li><strong>Places Enjoyed Visiting:</strong>Rupsha River</li>
-                <li><strong>Preferred Clothing:</strong>Lungi,Full sleeve shirt</li>
-                            </ul>
-        </div>
- <h3>Entertainment and Hobbies</h2>
-<div class="card">
-            <ul>
-
-                <li><strong>Favorite Book:</strong>Kitabuz Zuhd</li>
-                <li><strong>Favorite Author:</strong>Motiur Rahman Rentu</li>
-                <li><strong>Favorite Sport:</strong>Archery</li>
-                <li><strong>Hobbies:</strong>Sleeping</li>
-                            </ul>
-        </div>
-
-
-
-        <h2>Education</h2>
-        <table>
+    <h2 onclick="toggleSection(this)">Education</h2>
+  <div class="toggle-content">
+    <div class="card">
+       <table>
             <thead>
                 <tr>
                     <th>Degree</th>
@@ -565,47 +606,58 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+  </div>         
 
-        <h2>Skills</h2>
+ 
+        
+
+<h2 onclick="toggleSection(this)">Skills</h2>
+    <div class="toggle-content">
         <div class="card">
-            <div class="skill-container">
-                <div class="skill-name">Java</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #3498db;" data-percentage="52"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">Kotlin</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #8e44ad;" data-percentage="18"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">Flutter</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #e67e22;" data-percentage="45"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">Python</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #27ae60;" data-percentage="12"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">C</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #2ecc71;" data-percentage="82"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">SQL</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #9b59b6;" data-percentage="78"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">HTML</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #f39c12;" data-percentage="55"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">CSS</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #2980b9;" data-percentage="43"></div></div>
-            </div>
-            <div class="skill-container">
-                <div class="skill-name">JavaScript</div>
-                <div class="progress-bar"><div class="progress" style="background-color: #c0392b;" data-percentage="33"></div></div>
-            </div>
+            <ul>
+                <div class="skill-container">
+                    <div class="skill-name">Java</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #3498db;" data-percentage="52"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">Kotlin</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #8e44ad;" data-percentage="18"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">Flutter</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #e67e22;" data-percentage="45"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">Python</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #27ae60;" data-percentage="12"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">C</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #2ecc71;" data-percentage="82"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">SQL</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #9b59b6;" data-percentage="78"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">HTML</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #f39c12;" data-percentage="55"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">CSS</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #2980b9;" data-percentage="43"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="progress-bar"><div class="progress" style="background-color: #c0392b;" data-percentage="33"></div></div>
+                </div>
+            </ul>
         </div>
-        <h2>Projects</h2>
+    </div>
+
+    <h2 onclick="toggleSection(this)">Projects</h2>
+    <div class="toggle-content">
         <div class="card">
             <ul>
                 <li><strong>Project Name:</strong> NWU My Class</li>
@@ -613,10 +665,8 @@
                 <li><strong>Project Type:</strong> Class Management Android App</li>
                 <li><strong>Project Purpose:</strong> Software Development (CSE-2200) Course</li>
                 <li><strong>Technology Used:</strong> Java</li>
-            </ul>
-            <div class="skill-container">
                 <li><strong>Limitations:</strong> Database Nai</li>
-            </div>
+            </ul>
         </div>
         <div class="card">
             <ul>
@@ -625,10 +675,8 @@
                 <li><strong>Project Type:</strong> Audio Calling App</li>
                 <li><strong>Project Purpose:</strong> Practice</li>
                 <li><strong>Technology Used:</strong> Java, Firebase</li>
-            </ul>
-            <div class="skill-container">
                 <li><strong>Limitations:</strong> Database is so small</li>
-            </div>
+            </ul>
         </div>
         <div class="card">
             <ul>
@@ -637,8 +685,6 @@
                 <li><strong>Project Type:</strong> IoT-based Water Level Monitoring System</li>
                 <li><strong>Project Purpose:</strong> Microprocessor and Microcontroller Laboratory (CSE-3102) Course</li>
                 <li><strong>Technology Used:</strong> ESP8266, HC-SR04 Ultrasonic Sensor</li>
-            </ul>
-            <div class="skill-container">
                 <li><strong>Limitations:</strong></li>
                 <ul class="limitation-list">
                     <li><strong>Sensor Accuracy:</strong> The HC-SR04 ultrasonic sensor may not provide accurate readings in environments with turbulence or foam on the water surface.</li>
@@ -651,7 +697,7 @@
                     <li><strong>Limited Battery Life:</strong> If battery-powered, the system may require frequent recharging or battery replacement, reducing its practicality for long-term use.</li>
                     <li><strong>Interference Issues:</strong> Nearby objects or obstacles may cause signal reflections, leading to inaccurate distance measurements.</li>
                 </ul>
-            </div>
+            </ul>
         </div>
         <div class="card">
             <ul>
@@ -660,12 +706,66 @@
                 <li><strong>Project Type:</strong>IoT-based Water Level Monitoring System Data Showing App</li>
                 <li><strong>Project Purpose:</strong>Microprocessor and Microcontroller Laboratory (CSE-3102) Course</li>
                 <li><strong>Technology Used:</strong> Java, Firebase</li>
-            </ul>
-            <div class="skill-container">
-                <li><strong>Limitations:</strong>Totally IoT-based</li>
-            </div>
+                <li><strong>Limitations:</strong>Totally IoT-based</li>            </div>
         </div>
-        <h2>Additional Sections</h2>
+
+
+
+
+
+<h2 onclick="toggleSection(this)">Personal Preference</h2>
+    <div class="toggle-content">
+        <h3>Philosophy & Beliefs</h3>
+        <div class="card">
+            <ul>
+                <li><strong>Life Motto:</strong> Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds. (Surah Al-An'am 6:162)</li>
+                <li><strong>Personal Philosophy:</strong> Follow the Qur’an and Sunnah in every aspect of life</li>
+                <li><strong>Political Thinking:</strong> Justice, honesty, and governance based on Islamic principles</li>
+                <li><strong>Religious Beliefs:</strong> Follows the core teachings of Islam</li>
+                <li><strong>Favorite Person:</strong> Prophet Muhammad (ﷺ)</li>
+                <li><strong>Role Model:</strong> Prophet Muhammad (ﷺ)</li>
+                <li><strong>Person I Dislike:</strong> Namrud, Amr ibn Hisham, Ramesses II, Sheikh Hasina</li>
+                <li><strong>Greatest Enemy:</strong> Nafs (self-desires) and Shaytan (Satan)</li>
+                <li><strong>Biggest Fear:</strong> Displeasing Allah and failing in the Hereafter</li>
+                <li><strong>Purpose of Life:</strong> To worship Allah (SWT) and strive for Jannah</li>
+            </ul>
+        </div>
+
+        <h3>Food and Drink</h3>
+        <div class="card">
+            <ul>
+                <li><strong>Favorite Food:</strong> Every halal food without Mula</li>
+                <li><strong>Favorite Fruit:</strong> Every halal fruit</li>
+                <li><strong>Favorite Fish:</strong> Every halal fish</li>
+                <li><strong>Disliked Food:</strong> Nai</li>
+                <li><strong>Favorite Beverage:</strong> Nabeez</li>
+            </ul>
+        </div>
+
+        <h3>Lifestyle and Preferences</h3>
+        <div class="card">
+            <ul>
+                <li><strong>Favorite Color:</strong> Green, White</li>
+                <li><strong>Favorite Place:</strong> Rupsha River</li>
+                <li><strong>Favorite Season:</strong> Rainy Season</li>
+                <li><strong>Places Enjoyed Visiting:</strong> Rupsha River</li>
+                <li><strong>Preferred Clothing:</strong> Lungi, Full sleeve shirt</li>
+            </ul>
+        </div>
+
+        <h3>Entertainment and Hobbies</h3>
+        <div class="card">
+            <ul>
+                <li><strong>Favorite Book:</strong> Kitabuz Zuhd</li>
+                <li><strong>Favorite Author:</strong> Motiur Rahman Rentu</li>
+                <li><strong>Favorite Sport:</strong> Archery</li>
+                <li><strong>Hobbies:</strong> Sleeping</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 onclick="toggleSection(this)">Additional Sections</h2>
+    <div class="toggle-content">
         <div class="card">
             <ul>
                 <li><strong>Training & Certifications:</strong> Nai</li>
@@ -675,7 +775,6 @@
             </ul>
         </div>
     </div>
-
     <button id="back-to-top">Back to Top</button>
 
     <script>
@@ -801,7 +900,7 @@
                     document.querySelector('.cv-container').style.display = 'block';
                 }
             } else {
-                document.getElementById('verification-message').innerText = "Sorry,You are not a human!No one except humans is allowed to view the Biodata.";
+                document.getElementById('verification-message').innerText = "Sorry,You are not a human!No one except humans is allowed to view the Bio-data.";
                 document.getElementById('verification-message').style.color = 'red';
             }
         }
@@ -818,7 +917,7 @@
 
         function downloadCV() {
             const link = document.createElement("a");
-            link.href = "path_to_your_cv.pdf";  
+            link.href = "khanbahadursadi.pdf";  
             link.download = "Md_Khan_Bahadur_Sadi_CV.pdf";
             link.click();
         }
@@ -826,6 +925,15 @@
         function showComingSoon() {
             alert("Feature Coming Soon");
         }
+function toggleSection(element) {
+      const content = element.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    }
+
     </script>
 </body>
 </html>
